@@ -1,16 +1,5 @@
 import { Link } from "react-router-dom";
 
-// src/components/InventoryTable.jsx
-
-const deleteInventory = () => {
-    // alert("This would normally delete the product.");
-    const confirmDelete = confirm("Do you want to delete this product?");
-
-    if (confirmDelete) {
-    }
-};
-// This function would normally delete the product from the database
-
 export default function InventoryTable({ items, onDelete }) {
     return (
         <>
