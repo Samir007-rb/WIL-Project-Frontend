@@ -47,7 +47,7 @@ export default function InventoryForm({ items = [], onSave }) {
           </div>
         ))}
         <div className="col-span-full flex justify-end space-x-2 mt-4">
-          <button type="button" onClick={() => navigate('/')} className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+          <button type="button" onClick={() => navigate('/inventories')} className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
             Cancel
           </button>
           <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">

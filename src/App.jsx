@@ -1,8 +1,9 @@
 import SidebarLayout from "./components/layout/SidebarLayout";
 import Dashboard from "./pages/Dashboard";
+import Login from "./pages/auth/Login";
 import InventoryTable from "./components/InventoryTable";
 import InventoryForm from "./components/InventoryForm";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 
 const inventoryItems = [
@@ -50,24 +51,18 @@ export default function App() {
   return (
     <>
       <Router>
-        <SidebarLayout>
-          <Routes>
-            <Route path="/" element={<Dashboard items={items} />} />
-            <Route
-              path="/inventories"
-              element={<InventoryTable items={items} onDelete={handleDelete} />}
-            />
-            <Route
-              path="/add-inventory"
-              element={<InventoryForm onSave={handleSave} />}
-            />
-            <Route
-              path="/edit-inventory/:id"
-              element={<InventoryForm items={items} onSave={handleSave} />}
-            />
-          </Routes>
-        </SidebarLayout>
-      </Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route element={<SidebarLayout />}>
+          <Route path="/dashboard" element={<Dashboard items={items} />} />
+          <Route path="/inventories" element={<InventoryTable items={items} onDelete={handleDelete} />} />
+          <Route path="/add-inventory" element={<InventoryForm onSave={handleSave} />} />
+          <Route path="/edit-inventory/:id" element={<InventoryForm items={items} onSave={handleSave} />} />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
     </>
   );
 }
